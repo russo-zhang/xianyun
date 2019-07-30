@@ -1,0 +1,106 @@
+<template>
+  <div class="header_box">
+    <header>
+      <el-row type="flex" justify="space-between">
+        <div class="logo">
+          <h1>
+            <nuxt-link to="/">
+              <img src="http://157.122.54.189:9093/images/logo.jpg" alt />
+            </nuxt-link>
+          </h1>
+        </div>
+        <div class="navs">
+          <nuxt-link :to="item.url" v-for="(item,index) in navsList" :key="index">{{item.page}}</nuxt-link>
+        </div>
+        <div class="user">
+          <el-dropdown>
+            <span class="el-dropdown-link">
+              <img src="http://157.122.54.189:9095/assets/images/avatar.jpg" alt />
+              大反派
+              <i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>
+                <nuxt-link to="/users">个人中心</nuxt-link>
+              </el-dropdown-item>
+              <el-dropdown-item>
+                <nuxt-link to="/login">退出</nuxt-link>
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
+      </el-row>
+    </header>
+  </div>
+</template>
+ 
+<script>
+export default {
+  data() {
+    return {
+      navsList: [
+        { url: "/", page: "首页" },
+        { url: "/post", page: "旅游攻略" },
+        { url: "/hotel", page: "酒店" },
+        { url: "/air", page: "国内机票" }
+      ]
+    };
+  }
+};
+</script>
+ 
+<style  scoped lang='less'>
+@colorBl: #429efd;
+.header_box {
+  border-bottom: 1px solid #ccc;
+  header {
+    width: 1000px;
+    height: 60px;
+    line-height: 60px;
+    vertical-align: middle;
+    margin: 0 auto;
+    .logo {
+      align-self: center;
+      margin-right: 20px;
+      h1 {
+        img {
+          width: 156px;
+          display: block;
+        }
+      }
+    }
+    .navs {
+      display: flex;
+      flex: 1;
+      a {
+        display: block;
+        padding: 0 20px;
+        height: 60px;
+        box-sizing: border-box;
+        &:hover {
+          color: @colorBl;
+          border-bottom: 6px solid @colorBl;
+        }
+      }
+    }
+    .user {
+      .el-dropdown-link {
+        vertical-align: middle;
+        img {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}
+.nuxt-link-exact-active {
+  background-color: @colorBl;
+  color: white;
+  &:hover {
+    color: white !important;
+  }
+}
+</style>

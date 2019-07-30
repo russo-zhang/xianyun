@@ -1,32 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style>
-    .big{
-      width: 600px;
-      height: 600px;
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    /* .big{
+      width: 700px;
+      height: 700px;
       border:1px solid gold;
       position: relative;
     }
     .box{
-      width: 400px;
-      height: 400px;
+      width: 300px;
+      height: 300px;
       border:1px solid silver;
       position: absolute;
       top:50%;
       left:50%;
-      margin-left: -200px;
-      margin-top: -200px;
+      margin-left: -150px;
+      margin-top: -150px;
+    } */
+
+    /* .big {
+      display: flex;
+      width: 600px;
+      height: 600px;
+      border: 1px solid gold;
+      justify-content: center;
+      align-items: center;
     }
+    .box {
+      width: 400px;
+      height: 400px;
+      border: 1px solid silver;
+    } */
+
+     .big {
+      display: flex;
+      width: 700px;
+      height: 700px;
+      border: 1px solid gold;
+      position: relative;
+    }
+    .box {
+      width: 300px;
+      height: 300px;
+      border: 1px solid silver;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%)
+    }
+
+    /* .big{   !!未实现
+      width: 700px;
+      height: 700px;
+      border:1px solid gold;
+      position: relative;
+    }
+    .box{
+      width: 300px;
+      height: 300px;
+      border:1px solid silver;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+    } */
   </style>
 </head>
+
 <body>
   <div class="big">
     <div class="box"></div>
   </div>
 </body>
+
 </html>
