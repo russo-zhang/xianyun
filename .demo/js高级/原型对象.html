@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Stu(name, age, gender) {
+      this.name = name
+      this.age = age
+      this.gender = gender
+    }
+    Stu.prototype.sayHi = function sayHi() {
+      console.log("大家好,我是" + this.name)
+    }
+
+    var jack = {
+      name: "jack",
+      age: 20,
+      gender: "男"
+    }
+
+    var tom = new Stu("tom", 18, "男")
+    var rose = new Stu("rose", 19, "女")
+    // console.dir(Stu)
+    // console.log(jack)
+    console.log(tom.__proto__===Object.prototype.constructor)
+
+    // console.log(tom.sayHi===rose.sayHi)
+    // tom.sayHi()
+  </script>
+</body>
+
+</html>
