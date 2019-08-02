@@ -16,7 +16,7 @@
           <el-dropdown>
             <span class="el-dropdown-link">
               <img src="http://157.122.54.189:9095/assets/images/avatar.jpg" alt />
-              大反派
+              {{$store.state.users.userInfo.user.nickname}}
               <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
@@ -24,7 +24,7 @@
                 <nuxt-link to="/users">个人中心</nuxt-link>
               </el-dropdown-item>
               <el-dropdown-item>
-                <nuxt-link to="/login">退出</nuxt-link>
+                <nuxt-link to="/login" @click.native="quit">退出</nuxt-link>
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
@@ -45,7 +45,15 @@ export default {
         { url: "/air", page: "国内机票" }
       ]
     };
-  }
+  },
+  methods: {
+    quit(){
+     this.$store.commit("users/clearUserInfo")
+    }
+  },
+  mounted() {
+    // console.log(this.$store.state.users.userInfo.user.nickname)
+  },
 };
 </script>
  

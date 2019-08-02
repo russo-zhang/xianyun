@@ -3,7 +3,12 @@
     <!-- 搜索框 -->
     <div class="search">
       <div class="search_navs">
-        <span v-for="(item,index) in search_navs_list" :key="index" @click="swichNavs(item.placeholder,index)">
+        <span
+          v-for="(item,index) in search_navs_list"
+          :key="index"
+          @click="swichNavs(item.placeholder,index)"
+          :class="{active:current==index}"
+        >
           <i>{{item.title}}</i>
         </span>
       </div>
@@ -23,6 +28,7 @@
         ></div>
       </el-carousel-item>
     </el-carousel>
+
   </div>
 </template>
  
@@ -40,18 +46,20 @@ export default {
         { title: "酒店", placeholder: "请输入城市搜索酒店" },
         { title: "机票", placeholder: "" }
       ],
-      placeholder:"搜索城市",
-      search_text: ""
+      placeholder: "搜索城市",
+      search_text: "",
+      current: 0
     };
   },
   methods: {
-    swichNavs(placeholder,index){
-      this.placeholder=placeholder
-      if(index==2){
-        this.$router.push("/air")
+    swichNavs(placeholder, index) {
+      this.placeholder = placeholder;
+      this.current = index;
+      if (index == 2) {
+        this.$router.push("/air");
       }
     }
-  },
+  }
 };
 </script>
  
@@ -71,7 +79,7 @@ export default {
     left: 50%;
     // margin-left: -250px;
     // margin-top: -42px;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     z-index: 99;
     .search_navs {
       display: flex;
@@ -85,8 +93,13 @@ export default {
         line-height: 35px;
         cursor: pointer;
         i {
-          
           color: white;
+        }
+      }
+      .active {
+        background: white;
+        i {
+          color: black;
         }
       }
     }

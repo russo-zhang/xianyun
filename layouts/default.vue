@@ -18,19 +18,19 @@ export default {
 };
 </script>
  
-<style lang='less'>
+<style>
 *{
   margin: 0;
   padding: 0;
 }
-ul ol li{
+ul,ol{
   list-style: none;
 }
 a{
   color: inherit;
   text-decoration: none;
 }
-em i {
+em,i{
   font-style: normal;
 }
 </style>
