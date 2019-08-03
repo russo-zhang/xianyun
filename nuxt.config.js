@@ -23,13 +23,16 @@ export default {
   ** Global CSS
   */
   css: [
-    'element-ui/lib/theme-chalk/index.css'
+    'element-ui/lib/theme-chalk/index.css',
+    'assets/css/main.css',
+    'assets/css/font-icon/iconfont.css',
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
     '@/plugins/element-ui',
+    '@/plugins/axios',
     { src: '~/plugins/localStorage.js', ssr: false }
   ],
   /*
