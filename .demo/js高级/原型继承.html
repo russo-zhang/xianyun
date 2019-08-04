@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Person(name, age, gender) {
+      this.name = name
+      this.age = age
+      this.gender = gender
+      // this.hobby=hobby
+    }
+
+    function Stu(homework) {
+      this.homework = homework
+    }
+    function Teacher(work) {
+      this.work = work
+    }
+
+    Stu.prototype = new Person("tom", 18, "男")
+    Teacher.prototype = new Person("jerry", 19, "女")
+
+    var tom = new Stu("语文")
+
+    // console.log(tom.name)
+    // console.log(tom.age)
+    // console.log(tom.gender)
+    // console.log(tom.homework)
+
+    var jerry = new Teacher("初级语法")
+    // console.log(jerry.name)
+    // console.log(jerry.age)
+    // console.log(jerry.gender)
+    // console.log(jerry.work)
+
+    var erika = new Teacher("自然拼读")
+
+    erika.name="erika"
+    console.log(erika.name)
+    console.log(jerry.name)
+    console.log(erika.age)
+    console.log(erika.gender)
+    console.log(erika.work)
+
+
+  </script>
+</body>
+
+</html>

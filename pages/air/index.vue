@@ -70,7 +70,7 @@
                         <el-date-picker
                           type="date"
                           placeholder="选择日期"
-                          v-model="form.depatrDate"
+                          v-model="form.departDate"
                           @change="pickDate"
                           style="width: 95%"
                         ></el-date-picker>
@@ -114,7 +114,7 @@
       </el-col>
     </el-row>
 
-    <!-- 特价机票 -->
+    <!-- 特价机票标题 -->
     <el-row type="flex">
       <el-col :span="4" justify="center">
         <div class="discount">
@@ -155,10 +155,10 @@ export default {
     return {
       form: {
         departCity: "",
-        depatrCode: "",
+        departCode: "",
         destCity: "",
         destCode: "",
-        depatrDate: ""
+        departDate: ""
       },
       discount: [],
       current: 0
@@ -190,13 +190,13 @@ export default {
         return item;
       });
       this.form.departCity = arr[0].value;
-      this.form.depatrCode = arr[0].sort;
+      this.form.departCode = arr[0].sort;
       callback(arr);
     },
     // 选择出发城市
     selectDepartCity(cityData) {
       this.form.departCity = cityData.value;
-      this.form.depatrCode = cityData.sort;
+      this.form.departCode = cityData.sort;
     },
     // 查找到达城市列表
     async searchDestCity(queryString, callback) {
@@ -222,23 +222,22 @@ export default {
     },
     // 选择日期
     pickDate(date) {
-      this.form.depatrDate = moment(date).format("YYYY-MM-DD");
+      this.form.departDate = moment(date).format("YYYY-MM-DD");
     },
     // 交换出发与到达城市
     exchange() {
-      let { departCity, depatrCode, destCity, destCode } = this.form;
+      let { departCity, departCode, destCity, destCode } = this.form;
       this.form.departCity = destCity;
-      this.form.depatrCode = destCode;
+      this.form.departCode = destCode;
       this.form.destCity = departCity;
-      this.form.destCode = depatrCode;
+      this.form.destCode = departCode;
     },
     // 搜索机票
-    async search() {
-      let res = await this.$axios({
-        url: "/airs",
-        params: this.form
-      });
-      console.log(res);
+    search() {
+      this.$router.push({
+        path:"/air/flights",
+        query:this.form
+      })
     },
 
     // 获取打折数据
@@ -346,8 +345,8 @@ export default {
     line-height: 26px;
     color: #429efd;
     margin: 20px 0;
-    .icon-airplane {
-      font-size: 26px;
+    i {
+      font-size: 30px;
     }
   }
   .discount_content {
@@ -365,6 +364,7 @@ export default {
         width: 100%;
         height: 16px;
         background-color: rgba(0, 0, 0, 0.3);
+       
       }
     }
   }

@@ -13,11 +13,13 @@
           <nuxt-link :to="item.url" v-for="(item,index) in navsList" :key="index">{{item.page}}</nuxt-link>
         </div>
         <div class="user">
-          <el-dropdown>
+          <el-dropdown v-if="$store.state.users.userInfo.user.nickname">
             <span class="el-dropdown-link">
               <img src="http://157.122.54.189:9095/assets/images/avatar.jpg" alt />
               {{$store.state.users.userInfo.user.nickname}}
-              <i class="el-icon-arrow-down el-icon--right"></i>
+              <i
+                class="el-icon-arrow-down el-icon--right"
+              ></i>
             </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>
@@ -28,6 +30,9 @@
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
+          <span class="el-dropdown-link" v-else>
+            <nuxt-link to="/login">登录/注册</nuxt-link>
+          </span>
         </div>
       </el-row>
     </header>
@@ -47,13 +52,13 @@ export default {
     };
   },
   methods: {
-    quit(){
-     this.$store.commit("users/clearUserInfo")
+    quit() {
+      this.$store.commit("users/clearUserInfo");
     }
   },
   mounted() {
     // console.log(this.$store.state.users.userInfo.user.nickname)
-  },
+  }
 };
 </script>
  
@@ -80,7 +85,7 @@ export default {
     .navs {
       display: flex;
       flex: 1;
-      a {
+      > a {
         display: block;
         padding: 0 20px;
         height: 60px;
@@ -92,6 +97,7 @@ export default {
       }
     }
     .user {
+      cursor: pointer;
       .el-dropdown-link {
         vertical-align: middle;
         img {
@@ -99,6 +105,15 @@ export default {
           height: 36px;
           border-radius: 50%;
           vertical-align: middle;
+        }
+        a {
+          background-color: white;
+          color: black;
+
+          &:hover {
+            color: black !important;
+            background-color: white !important;
+          }
         }
       }
     }
