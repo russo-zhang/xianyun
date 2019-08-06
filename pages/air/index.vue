@@ -125,21 +125,19 @@
     </el-row>
 
     <!-- 特价机票内容 -->
-    <el-row type="flex">
+    <el-row type="flex" class="discount_content">
       <el-col
         :span="6"
         justify="center"
         alian="middle"
-        class="discount_content"
         v-for="(item,index) in discount"
         :key="index"
       >
         <div>
-          <nuxt-link to="javascript:;">
-            <img :src="item.cover" alt class="cover" />
+          <nuxt-link :to="`/air/flights?departCity=${item.departCity}&departCode=${item.departCode}&destCity=${item.destCity}&destCode=${item.destCode}&departDate=${item.departDate}`" :style="`background:url(${item.cover})`">
             <div class="text">
               <i>{{item.departCity+"-"+item.destCity}}</i>
-              <span>111</span>
+              <em>¥{{item.price}}</em>
             </div>
           </nuxt-link>
         </div>
@@ -184,7 +182,8 @@ export default {
         params: { name: queryString }
       });
       // console.log(res)
-      if(res.data.data.length===0) return this.$message.warning("查找不到这个城市")
+      if (res.data.data.length === 0)
+        return this.$message.warning("查找不到这个城市");
       let arr = res.data.data.map((item, index) => {
         item.value = item.name.replace("市", "");
         return item;
@@ -206,7 +205,8 @@ export default {
         params: { name: queryString }
       });
       // console.log(res)
-      if(res.data.data.length===0) return this.$message.warning("查找不到这个城市")
+      if (res.data.data.length === 0)
+        return this.$message.warning("查找不到这个城市");
       let arr = res.data.data.map((item, index) => {
         item.value = item.name.replace("市", "");
         return item;
@@ -235,9 +235,16 @@ export default {
     // 搜索机票
     search() {
       this.$router.push({
-        path:"/air/flights",
-        query:this.form
-      })
+        path: "/air/flights",
+        query: this.form
+      });
+      // console.log(this.form)
+      console.log(this.$store.state.air.history);
+      let history = JSON.parse(JSON.stringify(this.$store.state.air.history));
+
+      history.unshift(this.form);
+      history.length = 5;
+      this.$store.commit("air/searchHistory", history);
     },
 
     // 获取打折数据
@@ -353,19 +360,34 @@ export default {
     height: 180px;
     border: 1px solid #ccc;
     margin-bottom: 50px;
+    padding: 15px;
     a {
-      width: 100%;
-      height: 100%;
-      padding: 15px;
+      width: 225px;
+      height: 140px;
+      display: block;
+      position: relative;
+
       .cover {
         width: 90%;
       }
       .text {
+        position: absolute;
+        color: white;
+        bottom: 0;
         width: 100%;
-        height: 16px;
-        background-color: rgba(0, 0, 0, 0.3);
-       
+        height: 24px;
+        background-color: rgba(0, 0, 0, 0.5);
+        box-sizing: border-box;
+        line-height: 24px;
+        padding: 0 15px;
+        em {
+          font-size: 18px;
+          float: right;
+        }
       }
+    }
+    &:last-child {
+      padding-right: 0;
     }
   }
 }
